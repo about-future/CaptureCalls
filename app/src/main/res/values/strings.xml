@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Capture Calls</string>
+    <string name="phone_number_key">phone_number_key</string>
+    <string name="incoming_phone_call">incoming phone call</string>
+
+</resources>
