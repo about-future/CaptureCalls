@@ -17,6 +17,7 @@
         tools:text="******9300" />
 
     <ImageView
+        android:id="@+id/phone_ringing_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle_shape"
@@ -27,6 +28,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="@dimen/vertical_bias" />
+
+    <ImageView
+        android:id="@+id/call_reject_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/touch_selector_red"
+        android:contentDescription="@string/app_name"
+        android:padding="16dp"
+        android:src="@drawable/ic_call_end"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="@dimen/vertical_bias" />
+
+    <ImageView
+        android:id="@+id/call_answer_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/touch_selector_green"
+        android:contentDescription="@string/app_name"
+        android:padding="16dp"
+        android:src="@drawable/ic_call"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="@dimen/vertical_bias" />
 
 </android.support.constraint.ConstraintLayout>
