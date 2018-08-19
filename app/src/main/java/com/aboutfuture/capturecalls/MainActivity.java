@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 //                        MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
 //            }
 //        }
+        // TODO: set permissions
 
         if (getIntent() != null) {
             Intent intent = getIntent();
@@ -90,102 +91,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
         }
 
-        //mAnswerCallImageView.setOnTouchListener(this);
         mRingingPhoneImageView.setOnTouchListener(this);
 
-//        mRejectCallImageView.setOnHoverListener(new View.OnHoverListener() {
-//            @Override
-//            public boolean onHover(View view, MotionEvent motionEvent) {
-//                mRejectCallImageView.setColorFilter(0xFFFFFFFF);
-//
-////                try {
-////                    if (telephonyManager != null) {
-////                        Class clazz = Class.forName(telephonyManager.getClass().getName());
-////
-////                        Method method;
-////                        method = clazz.getDeclaredMethod("getITelephony");
-////                        method.setAccessible(true);
-////
-////                        ITelephony telephonyService = (ITelephony) method.invoke(telephonyManager);
-////                        telephonyService.endCall();
-////                    }
-////                } catch (Exception e) {
-////                    e.printStackTrace();
-////                }
-//
-//                return false;
-//            }
-//        });
-
-//        mAnswerCallImageView.setOnHoverListener(new View.OnHoverListener() {
-//            @Override
-//            public boolean onHover(View view, MotionEvent motionEvent) {
-//                mAnswerCallImageView.setColorFilter(0xFFFFFFFF);
-//
-////                if (Build.VERSION.SDK_INT < 23) { // Prend en charge jusqu'à Android 5.1
-////                    try {
-////                        if (Build.MANUFACTURER.equalsIgnoreCase("HTC")) { // Uniquement pour HTC
-////                            AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-////                            if (audioManager != null && !audioManager.isWiredHeadsetOn()) {
-////                                Intent i = new Intent(Intent.ACTION_HEADSET_PLUG);
-////                                i.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY);
-////                                i.putExtra("state", 0);
-////                                i.putExtra("name", "Orasi");
-////                                try {
-////                                    sendOrderedBroadcast(i, null);
-////                                } catch (Exception e) { /* Do Nothing */ }
-////                            }
-////                        }
-////                        Runtime.getRuntime().exec("input keyevent " +
-////                                Integer.toString(KeyEvent.KEYCODE_HEADSETHOOK));
-////                    } catch (Exception e) {
-////                        // Runtime.exec(String) had an I/O problem, try to fall back
-////                        String enforcedPerm = "android.permission.CALL_PRIVILEGED";
-////                        Intent btnDown = new Intent(Intent.ACTION_MEDIA_BUTTON).putExtra(
-////                                Intent.EXTRA_KEY_EVENT, new KeyEvent(KeyEvent.ACTION_DOWN,
-////                                        KeyEvent.KEYCODE_HEADSETHOOK));
-////                        Intent btnUp = new Intent(Intent.ACTION_MEDIA_BUTTON).putExtra(
-////                                Intent.EXTRA_KEY_EVENT, new KeyEvent(KeyEvent.ACTION_UP,
-////                                        KeyEvent.KEYCODE_HEADSETHOOK));
-////
-////                        Context context = getApplicationContext();
-////                        context.sendOrderedBroadcast(btnDown, enforcedPerm);
-////                        context.sendOrderedBroadcast(btnUp, enforcedPerm);
-////                    }
-////                }
-//
-//                return false;
-//            }
-//        });
-
-//        // Create a common gesture listener object
-//        DetectSwipeGestureListener gestureListener = new DetectSwipeGestureListener();
-//        // Set activity in the listener
-//        //gestureListener.setImageViews(mRingingPhoneImageView, mAnswerCallImageView, mRejectCallImageView);
-//        gestureListener.setImageView(this, mRingingPhoneImageView);
-//        // Create the gesture detector with the gesture listener
-//        gestureDetectorCompat = new GestureDetectorCompat(this, gestureListener);
-//
-//
-//        mRingingPhoneImageView.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent motionEvent) {
-//                // Pass view on touch event to the gesture detector
-//                gestureDetectorCompat.onTouchEvent(motionEvent);
-//                // Return true to tell android OS that event has been consumed, do not pass it to other event listeners
-//                return true;
-//            }
-//        });
-
-//        GenericMotionListener(new View.OnGenericMotionListener() {
-//            @Override
-//            public boolean onGenericMotion(View view, MotionEvent motionEvent) {
-//                // Pass activity on touch event to the gesture detector
-//                gestureDetectorCompat.onTouchEvent(motionEvent);
-//                // Return true to tell android OS that event has been consumed, do not pass it to other event listeners
-//                return true;
-//            }
-//        });
+        // TODO: save instance state for rotation
     }
 
     @Override
@@ -215,8 +123,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     mMainLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.colorRed));
                     mAnswerCallImageView.setVisibility(View.INVISIBLE);
                     mRejectCallImageView.setVisibility(View.INVISIBLE);
+
                     // End call
                     endCall();
+
                 } else if ((mAnswerCallImageView.getLeft() <= x && x <= mAnswerCallImageView.getRight()) &&
                         (mAnswerCallImageView.getTop() <= y && y <= mAnswerCallImageView.getBottom())) {
                     // Motion stopped on Answer. Set background ringing button to red and
@@ -224,11 +134,14 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     mRingingPhoneImageView.setVisibility(View.VISIBLE);
                     mRingingPhoneImageView.setColorFilter(0xFFFFFFFF);
                     mRingingPhoneImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_call_end));
-                    mRingingPhoneImageView.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.circle_red));
+                    mRingingPhoneImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.circle_red));
+
                     // Set mIsRed
                     mIsRed = true;
+
                     // Start call
                     startCall();
+
                     // Reset views
                     mAnswerCallImageView.setColorFilter(0x9900FF00);
                     mAnswerCallImageView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorTransparent));
@@ -242,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                         mRingingPhoneImageView.setVisibility(View.INVISIBLE);
                         mMainLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.colorRed));
 
+                        // End call
                         endCall();
 
                     } else {
@@ -292,6 +206,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             try {
                 if (Build.MANUFACTURER.equalsIgnoreCase("HTC")) { // Uniquement pour HTC
                     AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                    // TODO: Update this
                     if (audioManager != null && !audioManager.isWiredHeadsetOn()) {
                         Intent i = new Intent(Intent.ACTION_HEADSET_PLUG);
                         i.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY);
@@ -319,15 +234,19 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 context.sendOrderedBroadcast(btnUp, enforcedPerm);
             }
         }
+        // TODO: add the rest of cases
     }
 
+    @SuppressWarnings({"rawtypes", "unchecked"})
     private void endCall() {
         try {
+            telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+
             if (telephonyManager != null) {
-                Class clazz = Class.forName(telephonyManager.getClass().getName());
+                Class cls = Class.forName(telephonyManager.getClass().getName());
 
                 Method method;
-                method = clazz.getDeclaredMethod("getITelephony");
+                method = cls.getDeclaredMethod("getITelephony");
                 method.setAccessible(true);
 
                 ITelephony telephonyService = (ITelephony) method.invoke(telephonyManager);
