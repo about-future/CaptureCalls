@@ -9,54 +9,74 @@
     tools:context=".MainActivity">
 
     <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:contentDescription="@string/app_name"-->
-        <!--android:scaleType="centerCrop"-->
-        <!--android:src="@drawable/manuel_will_unsplash"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:contentDescription="@string/app_name"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:src="@drawable/manuel_will_unsplash"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent" />-->
 
-    <ImageView
-        android:id="@+id/caller_iv"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:contentDescription="@string/secret_caller"
-        android:src="@drawable/ic_account_circle"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.2">
 
-    <TextView
-        android:id="@+id/phone_number_tv"
-        style="@style/Title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/caller_iv"
-        app:layout_constraintVertical_bias="0.05"
-        tools:text="******9300" />
+        <ImageView
+            android:id="@+id/caller_iv"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:contentDescription="@string/secret_caller"
+            android:src="@drawable/ic_account_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/call_incoming_tv"
-        style="@style/Subtitle"
-        android:text="@string/incoming_call"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/phone_number_tv" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/caller_iv"
+            app:layout_constraintStart_toEndOf="@id/caller_iv"
+            app:layout_constraintTop_toTopOf="@id/caller_iv">
 
-    <Chronometer
-        android:id="@+id/call_chronometer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Subtitle"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/phone_number_tv"
-        />
+            <TextView
+                android:id="@+id/phone_number_tv"
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:gravity="start"
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="******9300" />
+
+            <TextView
+                android:id="@+id/call_incoming_tv"
+                style="@style/Subtitle"
+                android:layout_width="wrap_content"
+                android:text="@string/incoming_call"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/phone_number_tv"
+                app:layout_constraintTop_toBottomOf="@id/phone_number_tv" />
+
+            <Chronometer
+                android:id="@+id/call_chronometer"
+                style="@style/Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@id/phone_number_tv"
+                app:layout_constraintTop_toBottomOf="@id/phone_number_tv" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
 
     <!--<View-->
     <!--android:id="@+id/circle"-->
@@ -76,7 +96,6 @@
         android:layout_height="56dp"
         android:background="@drawable/circle_shape"
         android:contentDescription="@string/app_name"
-        android:elevation="8dp"
         android:padding="12dp"
         android:src="@drawable/ic_local_phone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,13 +110,12 @@
         android:layout_height="56dp"
         android:background="@drawable/touch_selector_red"
         android:contentDescription="@string/app_name"
-        android:elevation="8dp"
         android:padding="12dp"
         android:src="@drawable/ic_call_end"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="@dimen/vertical_bias" />
@@ -108,13 +126,12 @@
         android:layout_height="56dp"
         android:background="@drawable/touch_selector_green"
         android:contentDescription="@string/app_name"
-        android:elevation="8dp"
         android:padding="12dp"
         android:src="@drawable/ic_call"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="@dimen/vertical_bias" />

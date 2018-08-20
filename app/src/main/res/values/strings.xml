@@ -2,5 +2,11 @@
     <string name="app_name">Capture Calls</string>
     <string name="phone_number_key">phone_number_key</string>
     <string name="incoming_phone_call">incoming phone call</string>
+    <string name="secret_caller">Secret Caller</string>
+    <string name="incoming_call">Incoming Call</string>
+    <string name="ok">OK</string>
+    <string name="permission_read_phone_state">Permission needed to read the phone state.</string>
+    <string name="permission_available_phone_state">Read phone state permission has been granted.</string>
+    <string name="permissions_not_granted">Permissions were not granted.</string>
 
 </resources>

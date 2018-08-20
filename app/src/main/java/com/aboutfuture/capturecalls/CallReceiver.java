@@ -43,7 +43,7 @@ public class CallReceiver extends BroadcastReceiver {
                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             context.startActivity(mainIntent);
                         }
-                    }, 500);
+                    }, 1000);
                 }
 //            } else {
 //                // No call or call ended, so window should close
