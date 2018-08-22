@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.Log;
 
 public class CallReceiver extends BroadcastReceiver {
 
@@ -16,25 +15,31 @@ public class CallReceiver extends BroadcastReceiver {
         Bundle extras = intent.getExtras();
         if (extras != null && !TextUtils.equals(intent.getAction(),"android.intent.action.NEW_OUTGOING_CALL")) {
             String state = extras.getString(TelephonyManager.EXTRA_STATE);
-            Log.w("MY_DEBUG_TAG", state);
-            if (TextUtils.equals(state, TelephonyManager.EXTRA_STATE_RINGING) || TextUtils.equals(state, TelephonyManager.EXTRA_STATE_OFFHOOK)) {
-                String phoneNumber = extras
-                        .getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
 
-                if (phoneNumber != null && phoneNumber.length() > 4) {
+            // If the phone is ringing or the call was answered
+            if (TextUtils.equals(state, TelephonyManager.EXTRA_STATE_RINGING)) {
+                // Get the calling number
+                String phoneNumber = extras.getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
+
+                // Check is the number is not null and has more than 4 digits
+                if (!TextUtils.isEmpty(phoneNumber) && phoneNumber.length() > 4) {
+                    // Subtract the first part of the phone number, without the last 4 digits
                     String subNumber = phoneNumber.substring(0, phoneNumber.length() - 4);
                     int length = subNumber.length();
+
                     String starReplacement = "";
                     int i = 0;
+                    // Generate a string composed of "*"(star symbols) as long as subNumber is
                     while (i < length) {
                         starReplacement = starReplacement.concat("*");
                         i++;
                     }
 
+                    // Replace the subNumber with the starReplacement
                     final String hiddenNumber = phoneNumber.replace(subNumber, starReplacement);
 
-                    Log.v("Calling Number:", hiddenNumber);
-
+                    // After one second since the incoming call was intercepted, open MainActivity
+                    // and pass the hidden number.
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -43,10 +48,8 @@ public class CallReceiver extends BroadcastReceiver {
                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             context.startActivity(mainIntent);
                         }
-                    }, 1000);
+                    }, 500);
                 }
-//            } else {
-//                // No call or call ended, so window should close
             }
         }
     }

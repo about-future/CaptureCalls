@@ -4,9 +4,28 @@
     <string name="incoming_phone_call">incoming phone call</string>
     <string name="secret_caller">Secret Caller</string>
     <string name="incoming_call">Incoming Call</string>
+    <string name="reject_call">Reject call</string>
+    <string name="answer_call">Answer call</string>
     <string name="ok">OK</string>
-    <string name="permission_read_phone_state">Permission needed to read the phone state.</string>
-    <string name="permission_available_phone_state">Read phone state permission has been granted.</string>
-    <string name="permissions_not_granted">Permissions were not granted.</string>
+    <string name="mic_on">Turn on microphone</string>
+    <string name="mic_off">Mute microphone</string>
+    <string name="mic">Microphone</string>
+    <string name="speaker">Speaker</string>
+    <string name="speaker_on">Turn on speaker</string>
+    <string name="speaker_off">Turn off speaker</string>
 
+    <string name="permissions_not_granted">Permissions were not granted.</string>
+    <string name="permissions_available">Permissions have been granted.</string>
+
+    <string name="permission_read_phone_state">Permission needed to read the status of any ongoing calls.</string>
+    <string name="permission_available_read_phone_state">Read phone state permission has been granted.</string>
+
+    <string name="permission_answer_phone_calls">Permission needed to answer an incoming phone call.</string>
+    <string name="permission_available_answer_phone_calls">Answer incoming phone calls permission has been granted.</string>
+
+    <string name="permission_call_phone">Permission needed to make and end a phone call.</string>
+    <string name="permission_available_call_phone">End phone call permission has been granted.</string>
+
+    <string name="permission_modify_audio_settings">Permission needed to modify audio settings.</string>
+    <string name="permission_available_modify_audio_settings">Modify audio settings permission has been granted.</string>
 </resources>
